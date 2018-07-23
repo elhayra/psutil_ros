@@ -4,5 +4,5 @@ float32 usage
 # number of cpu physical cores
 uint8 physical_cores
 
-# number of cpu virtual cores
-uint8 virtual_cores
+# number of cpu physical and virtual cores
+uint8 cores
