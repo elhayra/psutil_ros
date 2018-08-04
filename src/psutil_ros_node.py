@@ -5,10 +5,10 @@ import psutil
 from psutil_ros.msg import Cpu
 from psutil_ros.msg import VirtualMemory
 from psutil_ros.msg import Network
-from psutil_ros.msg import Disk
+from psutil_ros.msg import Temperatures
+from psutil_ros.msg import SensorTemp
 
-#TODO: CREATE LAUNCH FILE
-#TODO: check for psutil errors
+#TODO: handle possible exceptions and empty values
 
 if __name__ == '__main__':
     
@@ -18,13 +18,13 @@ if __name__ == '__main__':
     loop_rate = rospy.get_param('~loop_rate', 1)
     publish_cpu = rospy.get_param('~publish_cpu', True)
     publish_memo = rospy.get_param('~publish_memo', True)
-    publish_disk = rospy.get_param('~publish_disk', True)
+    publish_temps = rospy.get_param('~publish_temps', True)
     publish_network = rospy.get_param('~publish_network', True)
     
     # publishers 
     cpu_pub = rospy.Publisher('psutil_ros/cpu', Cpu, queue_size=10)
     mem_pub = rospy.Publisher('psutil_ros/virtual_memory', VirtualMemory, queue_size=10)
-    disk_pub = rospy.Publisher('psutil_ros/disk', Disk, queue_size=10)
+    temps_pub = rospy.Publisher('psutil_ros/temps', Temperatures, queue_size=10)
     network_pub = rospy.Publisher('psutil_ros/network', Network, queue_size=10)
     
     rate = rospy.Rate(loop_rate)
@@ -35,7 +35,7 @@ if __name__ == '__main__':
 	# messages 
 	cpu_msg = Cpu()
 	memo_msg = VirtualMemory()
-	disk_msg = Disk()
+	temps_msg = Temperatures()
         network_msg = Network()
 	
 	#********* CPU *********
@@ -62,9 +62,19 @@ if __name__ == '__main__':
             
             mem_pub.publish(memo_msg)
         
-        #********* Disk ********  
-        if publish_disk:
-            disk_pub.publish(disk_msg)
+        #***** Temperatures ****  
+        if publish_temps:
+            temps = psutil.sensors_temperatures()
+
+            for key, value in temps.iteritems():
+		sensor_temp_msg = SensorTemp()
+  		sensor_temp_msg.label = key
+		sensor_temp_msg.current = value[0].current
+		sensor_temp_msg.high = value[0].high
+		sensor_temp_msg.critical = value[0].critical
+            	temps_msg.temps.append(sensor_temp_msg)
+		
+            temps_pub.publish(temps_msg)
             
         #******* Network *******   
         if publish_network:

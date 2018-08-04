@@ -50,7 +50,8 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    Cpu.msg
    VirtualMemory.msg
-   Disk.msg
+   Temperatures.msg
+   SensorTemp.msg
    Network.msg
  )
 
