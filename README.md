@@ -1,6 +1,6 @@
 # psutil_ros
 
-ROS Wrapper for psutil. Get CPU, virtual memory and disk usage easily
+ROS Wrapper for psutil. Get CPU, virtual memory and tempartures easily
 
 ## Installation
 
@@ -15,10 +15,12 @@ pip install psutil
 
 1. Edit the launch file to suite your needs. The launch file is documented and should be easy to configure.
 
-2. Launch the package node:
+3. Optional - open the executable node file (psutil_ros_node.py) and edit the parameters on the top according to your needs.
+
+2. Run the package node:
 
 ```
-roslaunch psutil_ros psutil_ros.launch
+rosrun psutil_ros psutil_ros_node.py
 ```
 
 * You can find psutil documentation here: http://psutil.readthedocs.io/en/latest/#
