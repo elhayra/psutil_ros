@@ -10,6 +10,7 @@ ROS Wrapper for psutil. Get CPU, virtual memory and tempartures easily
 pip install psutil
 ```
 2. Download this package into your catkin workspace
+3. Compile your catkin workspace in order to generate psutil_ros ROS messages
 
 ## Usage
 
