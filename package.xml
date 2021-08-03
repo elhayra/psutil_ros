@@ -1,6 +1,6 @@
 <package format="2">
   <name>psutil_ros</name>
-  <version>2021.08.03192810</version>
+  <version>0.2.0</version>
   <description>The psutil-ros package</description>
 
   
