@@ -75,7 +75,11 @@ if __name__ == '__main__':
 
         # ********* CPU *********
         cpu_msg.usage = psutil.cpu_percent(interval=0)
-        cpu_msg.physical_cores = psutil.cpu_count(logical=False)
+
+        #ARM processors return None
+        physical_cores = psutil.cpu_count(logical=False)
+        if physical_cores:
+            cpu_msg.physical_cores = physical_cores
         cpu_msg.cores = psutil.cpu_count()
         cpu_msg.current_freq = psutil.cpu_freq().current
         cpu_msg.min_freq = psutil.cpu_freq().min
