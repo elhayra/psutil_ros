@@ -1,0 +1,6 @@
+
+#loop_rate: 2
+#publish_cpu: True
+#publish_memo: True
+#publish_temps: True
+#publish_network: True

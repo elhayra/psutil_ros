@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<launch>
+    <node pkg="psutil_ros" type="psutil_ros_node.py" name="psutil_ros">
+    	<rosparam command="load" file="$(dirname)/psutil_ros.yaml" />
+    </node>
+</launch>

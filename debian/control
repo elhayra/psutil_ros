@@ -1,0 +1,12 @@
+Source: ros-melodic-psutil-ros
+Section: misc
+Priority: optional
+Maintainer: sub <admin@probotics.net>
+Build-Depends: debhelper (>= 9.0.0), ros-melodic-catkin, ros-melodic-rospy
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-melodic-psutil-ros
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-psutil, ros-melodic-rospy
+Description: The psutil-ros package
